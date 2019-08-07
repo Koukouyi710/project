@@ -19,10 +19,14 @@
 
 <form action="" method="post">
 
-   <input type="hidden" name="id" value="${category.id}"><br/>
-    名称<input type="text" name="name" value="${category.name}"><br/>
-    父类id<input type="text" name="parentId" value="${category.parentId}"><br/>
-    类别状态:<input type="text" name="status" value="${category.status}"><br/>
+   <input type="hidden" name="id" value="${user.id}"><br/>
+    用户名:<input type="text" name="username" value="${user.username}"><br/>
+    用户密码:<input type="text" name="password" value="${user.password}"><br/>
+    email:<input type="text" name="email" value="${user.email}"><br/>
+    phone:<input type="text" name="phone" value="${user.phone}"><br/>
+    找回密码问题:<input type="text" name="question" value="${user.question}"><br/>
+    找回密码答案:<input type="text" name="answer" value="${user.answer}"><br/>
+    角色（0-管理员,1-普通用户）:<input type="text" name="role" value="${user.role}"><br/>
     <input type="submit"  value="确认"><br/>
 
 </form>

@@ -16,9 +16,13 @@
 <body>
 <table>
     <thead>
+    <th>id</th>
     <th>用户名</th>
+    <th>密码</th>
     <th>email</th>
     <th>phone</th>
+    <th>找回密码问题</th>
+    <th>找回密码答案</th>
     <th>角色（0-管理员）</th>
     <th>创建时间</th>
     <th>最后一次更新时间</th>
@@ -28,9 +32,13 @@
     <c:forEach items="${userlist}" var="user">
 
         <tr>
+            <th>${user.id}</th>
             <th>${user.username}</th>
+            <th>${user.password}</th>
             <th>${user.email}</th>
             <th>${user.phone}</th>
+            <th>${user.question}</th>
+            <th>${user.answer}</th>
             <th>${user.role}</th>
             <th>${user.createTime}</th>
             <th>${user.updateTime}</th>

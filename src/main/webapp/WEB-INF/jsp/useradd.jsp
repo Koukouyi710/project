@@ -10,13 +10,6 @@
 <head>
     <title>Title</title>
 
-    <script langauge='javascript'>
-        function clock()
-        {
-            strTime = new Date();
-        }
-    </script>
-
 </head>
 <body>
 
@@ -26,14 +19,13 @@
 
 <form action="" method="post">
 
-    类别名称<input type="text" name="name"><br/>
-    父类id<input type="text" name="parentId"><br/>
-    类别状态:<input type="text" name="status"><br/>
-    排序编号:<input type="text" name="sort_order"><br/>
-    <%--创建时间--%>
-    <input type="hidden" name="create_time" value="2019-08-05 23:29:17"><br/>
-    <%--最后一次更新时间--%>
-    <input type="hidden" name="update_time" value=strTime><br/>
+    用户名:<input type="text" name="username"><br/>
+    用户密码:<input type="text" name="password"><br/>
+    email:<input type="text" name="email"><br/>
+    phone:<input type="text" name="phone"><br/>
+    找回密码问题:<input type="text" name="question"><br/>
+    找回密码答案:<input type="text" name="answer"><br/>
+    角色（0-管理员,1-普通用户）:<input type="text" name="role"><br/>
     <input type="submit"  value="添加"><br/>
 
 </form>
