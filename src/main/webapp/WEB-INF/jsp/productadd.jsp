@@ -20,7 +20,15 @@
 <form action="" method="post">
 
 
-    类别Id:<input type="text" name="categoryId"><br/>
+    类别Id:
+    <%--<input type="text" name="categoryId">--%>
+    <select name="categoryId">
+        <option value="" style="display: none"></option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <br/>
     商品名称:<input type="text" name="name"><br/>
     商品副标题:<input type="text" name="subtitle"><br/>
     商品主图:<input type="text" name="mainImage"><br/>
@@ -28,7 +36,14 @@
     商品详情:<input type="text" name="detail"><br/>
     价格:<input type="text" name="price"><br/>
     库存数量:<input type="text" name="stock"><br/>
-    商品状态:<input type="text" name="status"><br/>
+    商品状态:
+   <%-- <input type="text" name="status">--%>
+    <select name="status">
+        <option value="1">1-在售</option>
+        <option value="2">2-下架</option>
+        <option value="3">3-删除</option>
+    </select>
+    <br/>
     <input type="submit"  value="添加"><br/>
 
 </form>

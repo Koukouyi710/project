@@ -1,5 +1,6 @@
 package com.neuedu.interceptors;
 
+import com.neuedu.consts.Const;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IUserService;
 import com.neuedu.service.impl.UserServiceImpl;
@@ -25,34 +26,45 @@ public class AuthorityInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
         System.out.println("=====preHandle======");
-        HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        String username = null;
-        String password = null;
-        if (cookies!=null&&cookies.length>0){
-            for (Cookie c:cookies){
-                if (c.getName().equals("username")){
-                    username = c.getValue();
+        Cookie[] cookies=request.getCookies();
+        String username=null;
+        String password=null;
+        HttpSession session=request.getSession();
+        if(session.getAttribute("user")!=null){
+            return true;
+        }
+        if(cookies!=null&&cookies.length>0){
+            for(Cookie c:cookies){
+                //c->name value
+                if(c.getName().equals("username")){
+                    username=c.getValue();
                 }
-                if (c.getName().equals("password")){
-                    username = c.getValue();
+                if(c.getName().equals("password")){
+                    password=c.getValue();
                 }
             }
         }
-        if (session.getAttribute("user")!=null){
-            return true;
+        if(username!=null&&password!=null){
+            //根据用户名和密码自动登录
+            UserInfo userInfo=new UserInfo();
+            userInfo.setUsername(username);
+            userInfo.setPassword(password);
+            UserInfo userInfo1= userService.login(userInfo);
+            if(userInfo1!=null){
+                //登录成功
+                session.setAttribute(Const.CURRENT_USER,userInfo);
+                return true;
+            }
         }
-        else if (username!=null&&password!=null){
-            return true;
-        }
-        else {
+        else{
+
             try {
-            response.sendRedirect(request.getContextPath()+"/user/login");
+                response.sendRedirect("/user/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return false;//false:拦截请求 true:不会拦截请求
         }
+        return false;
     }
 
     @Override

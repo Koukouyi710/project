@@ -25,7 +25,13 @@
     phone:<input type="text" name="phone"><br/>
     找回密码问题:<input type="text" name="question"><br/>
     找回密码答案:<input type="text" name="answer"><br/>
-    角色（0-管理员,1-普通用户）:<input type="text" name="role"><br/>
+    角色:
+    <%--<input type="text" name="role">--%>
+    <select name="role">
+        <option value="0">0-管理员</option>
+        <option value="1" selected = "selected" >1-普通用户</option>
+    </select>
+    <br/>
     <input type="submit"  value="添加"><br/>
 
 </form>

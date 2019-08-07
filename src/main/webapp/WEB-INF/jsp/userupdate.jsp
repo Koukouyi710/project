@@ -26,7 +26,14 @@
     phone:<input type="text" name="phone" value="${user.phone}"><br/>
     找回密码问题:<input type="text" name="question" value="${user.question}"><br/>
     找回密码答案:<input type="text" name="answer" value="${user.answer}"><br/>
-    角色（0-管理员,1-普通用户）:<input type="text" name="role" value="${user.role}"><br/>
+    角色:
+    <%--<input type="text" name="role" value="${user.role}">--%>
+    <select name="role">
+        <option value="" style="display: none"></option>
+        <option value="0">0-管理员</option>
+        <option value="1">1-普通用户</option>
+    </select>
+    <br/>
     <input type="submit"  value="确认"><br/>
 
 </form>

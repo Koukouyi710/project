@@ -56,27 +56,27 @@
         username = #{user.username,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.password!=null">
         password = #{user.password,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.email!=null">
         email = #{user.email,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.phone!=null">
         phone = #{user.phone,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.question!=null">
         question = #{user.question,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.answer!=null">
         answer = #{user.answer,jdbcType=VARCHAR},
       </if>
 
-      <if test="user.username!=null">
+      <if test="user.role!=null">
         role = #{user.role,jdbcType=INTEGER},
       </if>
 

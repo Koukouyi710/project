@@ -20,8 +20,21 @@
 <form action="" method="post">
 
     类别名称:<input type="text" name="name"><br/>
-    父类id:<input type="text" name="parentId"><br/>
-    类别状态:<input type="text" name="status"><br/>
+    父类id:
+    <%--<input type="text" name="parentId">--%>
+    <select name="parentId">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <br/>
+    类别状态:
+    <%--<input type="text" name="status">--%>
+    <select name="status">
+        <option value="1">1-正常</option>
+        <option value="2">2-已废弃</option>
+    </select>
+    <br/>
     排序编号:<input type="text" name="sort_order"><br/>
     <input type="submit"  value="添加"><br/>
 
