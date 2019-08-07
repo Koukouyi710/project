@@ -30,6 +30,12 @@
         </property>
     </bean>
 
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/user/login" />
+            <bean class="com.neuedu.interceptors.AuthorityInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
