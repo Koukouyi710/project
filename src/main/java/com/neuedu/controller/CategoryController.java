@@ -50,7 +50,7 @@ public class CategoryController {
     public  String  update(Category category, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("GBK");
 
        //
        int count= categoryService.updateCategory(category);
@@ -83,7 +83,7 @@ public class CategoryController {
     public  String  addCategory(Category category, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("GBK");
         int count= categoryService.addCategory(category);
 
         if(count>0){
