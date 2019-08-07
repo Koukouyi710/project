@@ -18,26 +18,37 @@ public class UserController {
     @Autowired
     IUserService userService;
 
+
+
     @RequestMapping(value = "login",method = RequestMethod.GET)
-    public String login(){
+    public  String login(){
         return "login";
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public String login(UserInfo userInfo, HttpSession session){
+    public  String login(UserInfo userInfo, HttpSession session){
 
-        UserInfo loginUserInfo = userService.login(userInfo);
+       UserInfo loginUserInfo= userService.login(userInfo);
+
         System.out.println(loginUserInfo);
+
         if(loginUserInfo!=null){
             session.setAttribute(Const.CURRENT_USER,loginUserInfo);
+
             return "redirect:home";
         }
         return "login";
     }
 
+
     @RequestMapping("home")
-    public String home(){
+    public  String  home(){
+
         return "home";
     }
+
+
+
+
 
 }
