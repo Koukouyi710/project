@@ -63,7 +63,7 @@ public class CategoryController {
         return "categoryupdate";
     }
 
-    //删除用户
+    //删除类别
     @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
     public  String  delete(@PathVariable("id") Integer categoryId, HttpServletRequest request){
 
@@ -73,7 +73,7 @@ public class CategoryController {
         return "redirect:/user/category/find";
     }
 
-    //添加用户
+    //添加类别
     @RequestMapping(value = "categoryadd",method = RequestMethod.GET)
     public String addCategory(){
         return "categoryadd";
