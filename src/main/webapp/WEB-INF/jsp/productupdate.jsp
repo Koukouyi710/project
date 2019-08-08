@@ -17,7 +17,7 @@
 
 
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
     <input type="hidden" name="id" value="${product.id}"><br/>
     类别Id:
@@ -31,8 +31,7 @@
     <br/>
     商品名称:<input type="text" name="name" value="${product.name}"><br/>
     商品副标题:<input type="text" name="subtitle" value="${product.subtitle}"><br/>
-    商品主图:<input type="text" name="mainImage" value="${product.mainImage}"><br/>
-    图片地址:<input type="text" name="subImages" value="${product.subImages}"><br/>
+    图片上传：<input type="file" name="picfile"></br>
     商品详情:<input type="text" name="detail" value="${product.detail}"><br/>
     价格:<input type="text" name="price" value="${product.price}"><br/>
     库存数量:<input type="text" name="stock" value="${product.stock}"><br/>

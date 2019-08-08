@@ -17,13 +17,12 @@
 
 
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
 
     类别Id:
     <%--<input type="text" name="categoryId">--%>
     <select name="categoryId">
-        <option value="" style="display: none"></option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -31,8 +30,7 @@
     <br/>
     商品名称:<input type="text" name="name"><br/>
     商品副标题:<input type="text" name="subtitle"><br/>
-    商品主图:<input type="text" name="mainImage"><br/>
-    图片地址:<input type="text" name="subImages"><br/>
+    图片上传：<input type="file" name="pic"></br>
     商品详情:<input type="text" name="detail"><br/>
     价格:<input type="text" name="price"><br/>
     库存数量:<input type="text" name="stock"><br/>
