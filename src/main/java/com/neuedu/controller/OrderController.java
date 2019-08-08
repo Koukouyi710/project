@@ -4,13 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class TestController {
+@RequestMapping("/user/order/")
+public class OrderController {
 
+    @RequestMapping("findorder")
+    public  String  findorder(){
 
-    @RequestMapping("/login")
-    public  String  login(){
-
-        return "old/login1";
+        return "order/list";
     }
-
 }

@@ -31,7 +31,9 @@ public class ProductController {
         List<Product> productList=productService.findAll();
 
         session.setAttribute("productlist",productList);
-        return "productlist";
+
+        return "product/list";
+        //return "productlist";
     }
 
 
@@ -43,7 +45,8 @@ public class ProductController {
 
         request.setAttribute("product",product);
 
-        return "productupdate";
+        return "product/index";
+        //return "productupdate";
     }
 
     @RequestMapping(value = "productupdate/{id}",method = RequestMethod.POST)
@@ -51,19 +54,24 @@ public class ProductController {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
-        if(uploadFile!=null){
+        if(uploadFile!=null||!uploadFile.equals("")){
 
             String uuid = UUID.randomUUID().toString();
             //获取扩展名
             String fileName = uploadFile.getOriginalFilename();
-            product.setMainImage(fileName);
             System.out.println("===filename="+fileName+"===");
             String extraName = fileName.substring(fileName.lastIndexOf("."));
 
             String newFileName = uuid+extraName;
             System.out.println("===新名="+newFileName+"===");
 
-            product.setSubImages("D:\\upload\\"+newFileName);
+            if(product.getMainImage()==null||product.getMainImage().equals("")){
+                product.setMainImage("D:\\upload\\"+newFileName);
+                product.setSubImages("D:\\upload\\"+newFileName);
+            }
+            else{
+                product.setSubImages(product.getSubImages()+";D:\\upload\\"+newFileName);
+            }
             File file = new File("D:\\upload");
             if(!file.exists()){
                 file.mkdir();
@@ -85,7 +93,8 @@ public class ProductController {
             return "redirect:/user/product/findproduct";
         }
 
-        return "productupdate";
+        return "product/index";
+        //return "productupdate";
     }
 
     //删除类别
@@ -101,28 +110,35 @@ public class ProductController {
     //添加类别
     @RequestMapping(value = "productadd",method = RequestMethod.GET)
     public String addProduct(){
-        return "productadd";
+        return "product/index";
+        //return "productadd";
     }
 
     @RequestMapping(value = "productadd",method = RequestMethod.POST)
-    public  String  addProduct(@RequestParam("pic")MultipartFile uploadFile,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public  String  addProduct(@RequestParam("picfile")MultipartFile uploadFile,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
 
-        if(uploadFile!=null){
+        if(uploadFile!=null||!uploadFile.equals("")){
 
             String uuid = UUID.randomUUID().toString();
             //获取扩展名
             String fileName = uploadFile.getOriginalFilename();
-            product.setMainImage(fileName);
             System.out.println("===filename="+fileName+"===");
             String extraName = fileName.substring(fileName.lastIndexOf("."));
 
             String newFileName = uuid+extraName;
             System.out.println("===新名="+newFileName+"===");
 
-            product.setSubImages("D:\\upload\\"+newFileName);
+            System.out.println(product.getMainImage());
+            if(product.getMainImage()==null||product.getMainImage().equals("")){
+                product.setMainImage("D:\\upload\\"+newFileName);
+                product.setSubImages("D:\\upload\\"+newFileName);
+            }
+            else{
+                product.setSubImages(product.getSubImages()+";D:\\upload\\"+newFileName);
+            }
             File file = new File("D:\\upload");
             if(!file.exists()){
                 file.mkdir();
@@ -143,7 +159,7 @@ public class ProductController {
             //添加成功
             return "redirect:/user/product/findproduct";
         }
-
-        return "productadd";
+        return "product/index";
+        //return "productadd";
     }
 }

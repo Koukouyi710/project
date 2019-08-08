@@ -31,7 +31,9 @@ public class CategoryController {
         List<Category> categoryList=categoryService.findAll();
 
         session.setAttribute("categorylist",categoryList);
-        return "categorylist";
+
+        return "category/list";
+        //return "categorylist";
     }
 
 
@@ -43,7 +45,8 @@ public class CategoryController {
 
         request.setAttribute("category",category);
 
-        return "categoryupdate";
+        return "category/index";
+        //return "categoryupdate";
     }
 
     @RequestMapping(value = "update/{id}",method = RequestMethod.POST)
@@ -60,7 +63,8 @@ public class CategoryController {
            return "redirect:/user/category/find";
        }
 
-        return "categoryupdate";
+        return "category/index";
+        //return "categoryupdate";
     }
 
     //删除类别
@@ -76,7 +80,8 @@ public class CategoryController {
     //添加类别
     @RequestMapping(value = "categoryadd",method = RequestMethod.GET)
     public String addCategory(){
-        return "categoryadd";
+        return "category/index";
+        //return "categoryadd";
     }
 
     @RequestMapping(value = "categoryadd",method = RequestMethod.POST)
@@ -90,7 +95,7 @@ public class CategoryController {
             //添加成功
             return "redirect:/user/category/find";
         }
-
-        return "categoryadd";
+        return "category/index";
+        //return "categoryadd";
     }
 }

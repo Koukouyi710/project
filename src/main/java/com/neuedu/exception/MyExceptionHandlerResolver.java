@@ -27,7 +27,7 @@ public class MyExceptionHandlerResolver implements HandlerExceptionResolver {
         String error= myException.getDirector();
 
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("error");  //逻辑视图
+        modelAndView.setViewName("common/error");  //逻辑视图
         Map<String,Object> model= modelAndView.getModel();
         model.put("es","es1");
 

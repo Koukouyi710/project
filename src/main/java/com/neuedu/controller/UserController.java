@@ -1,7 +1,6 @@
 package com.neuedu.controller;
 
 import com.neuedu.consts.Const;
-import com.neuedu.pojo.Category;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class UserController {
 
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public  String login(){
-        return "login";
+        return "common/login";
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)
@@ -52,14 +51,14 @@ public class UserController {
 
             return "redirect:home";
         }
-        return "login";
+        return "common/login";
     }
 
 
     @RequestMapping("home")
     public  String  home(){
 
-        return "home";
+        return "home/home";
     }
 
     @RequestMapping("finduser")
@@ -68,7 +67,8 @@ public class UserController {
         List<UserInfo> userlist=userService.findAll();
 
         session.setAttribute("userlist",userlist);
-        return "userlist";
+        return "users/list";
+        //return "userlist";
     }
 
     @RequestMapping(value = "updateuser/{id}",method = RequestMethod.GET)
@@ -79,7 +79,8 @@ public class UserController {
 
         request.setAttribute("user",user);
 
-        return "userupdate";
+        return "users/index";
+        //return "userupdate";
     }
 
     @RequestMapping(value = "updateuser/{id}",method = RequestMethod.POST)
@@ -96,7 +97,8 @@ public class UserController {
             return "redirect:/user/finduser";
         }
 
-        return "userupdate";
+        return "users/index";
+        //return "userupdate";
     }
 
     //删除用户
@@ -112,7 +114,8 @@ public class UserController {
     //添加用户
     @RequestMapping(value = "useradd",method = RequestMethod.GET)
     public String addCategory(){
-        return "useradd";
+        return "users/index";
+        //return "useradd";
     }
 
     @RequestMapping(value = "useradd",method = RequestMethod.POST)
@@ -126,8 +129,8 @@ public class UserController {
             //添加成功
             return "redirect:/user/finduser";
         }
-
-        return "useradd";
+        return "users/index";
+        //return "useradd";
     }
 
 }

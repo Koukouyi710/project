@@ -30,7 +30,7 @@
     <br/>
     商品名称:<input type="text" name="name"><br/>
     商品副标题:<input type="text" name="subtitle"><br/>
-    图片上传：<input type="file" name="pic"></br>
+    图片上传：<input type="file" name="picfile"></br>
     商品详情:<input type="text" name="detail"><br/>
     价格:<input type="text" name="price"><br/>
     库存数量:<input type="text" name="stock"><br/>
