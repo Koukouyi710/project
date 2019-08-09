@@ -3,6 +3,7 @@ package com.neuedu.controller;
 import com.neuedu.consts.Const;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IUserService;
+import com.neuedu.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,8 @@ public class UserController {
     @RequestMapping(value = "login",method = RequestMethod.POST)
     public  String login(UserInfo userInfo, HttpSession session, HttpServletResponse response){
 
+        String pwd = MD5Utils.getMD5Code(userInfo.getPassword());
+        userInfo.setPassword(pwd);
        UserInfo loginUserInfo= userService.login(userInfo);
 
         System.out.println(loginUserInfo);
@@ -41,7 +44,10 @@ public class UserController {
         if(loginUserInfo!=null){
             session.setAttribute(Const.CURRENT_USER,loginUserInfo);
             Cookie username_cookie = new Cookie("username",loginUserInfo.getUsername());
-            Cookie password_cookie = new Cookie("password",loginUserInfo.getPassword());
+
+            String cpwd = MD5Utils.getMD5Code(userInfo.getPassword());
+            Cookie password_cookie = new Cookie("password",cpwd);
+            //Cookie password_cookie = new Cookie("password",loginUserInfo.getPassword());
 
             username_cookie.setMaxAge(60*60*24*7);
             password_cookie.setMaxAge(60*60*24*7);
@@ -92,6 +98,8 @@ public class UserController {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
 
+        String pwd = MD5Utils.getMD5Code(user.getPassword());
+        user.setPassword(pwd);
         //
         int count= userService.updateUser(user);
 
@@ -131,6 +139,9 @@ public class UserController {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
+
+        String pwd = MD5Utils.getMD5Code(user.getPassword());
+        user.setPassword(pwd);
         int count= userService.addUser(user);
 
         if(count>0){
