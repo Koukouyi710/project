@@ -21,18 +21,16 @@ public class MyExceptionHandlerResolver implements HandlerExceptionResolver {
 
 
         System.out.println("============="+ex.getMessage());
-
-
-        MyException myException=(MyException) ex;
-        String error= myException.getDirector();
-
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("common/error");  //逻辑视图
-        Map<String,Object> model= modelAndView.getModel();
-        model.put("es","es1");
-
-
-
+        ModelAndView modelAndView=null;
+        if (ex instanceof MyException){
+            MyException myException=(MyException) ex;
+            String error= myException.getDirector();
+            modelAndView=new ModelAndView();
+            modelAndView.setViewName("common/error");  //逻辑视图
+            Map<String,Object> model= modelAndView.getModel();
+            model.put("es",ex.getMessage());
+            return modelAndView;
+        }
         return modelAndView;
     }
 }

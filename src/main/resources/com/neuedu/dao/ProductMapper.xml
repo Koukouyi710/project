@@ -58,35 +58,35 @@
     update neuedu_product
     <set>
 
-      <if test="product.categoryId!=null">
+      <if test="product.categoryId!=null and product.categoryId!=''">
         category_id = #{product.categoryId,jdbcType=INTEGER},
       </if>
 
-      <if test="product.name!=null">
+      <if test="product.name!=null and product.name!=''">
         name = #{product.name,jdbcType=VARCHAR},
       </if>
 
-      <if test="product.subtitle!=null">
+      <if test="product.subtitle!=null and product.subtitle!=''">
         subtitle = #{product.subtitle,jdbcType=VARCHAR},
       </if>
 
-      <if test="product.mainImage!=null">
+      <if test="product.mainImage!=null and product.mainImage!=''">
         main_image = #{product.mainImage,jdbcType=VARCHAR},
       </if>
 
-      <if test="product.stock!=null">
+      <if test="product.stock!=null and product.stock!=''">
         stock = #{product.stock,jdbcType=INTEGER},
       </if>
 
-      <if test="product.status!=null">
+      <if test="product.status!=null and product.status!=''">
         status = #{product.status,jdbcType=INTEGER},
       </if>
 
-      <if test="product.subImages!=null">
+      <if test="product.subImages!=null and product.subImages!=''">
         sub_images = #{product.subImages,jdbcType=LONGVARCHAR},
       </if>
 
-      <if test="product.detail!=null">
+      <if test="product.detail!=null and product.detail!=''">
         detail = #{product.detail,jdbcType=LONGVARCHAR},
       </if>
       update_time = now(),

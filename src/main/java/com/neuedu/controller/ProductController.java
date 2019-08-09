@@ -189,4 +189,41 @@ public class ProductController {
         return "product/index";
         //return "productadd";
     }
+
+
+    @RequestMapping(value = "productup/{id}")
+    public  String  upProduct(Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("GBK");
+
+        product.setStatus(1);
+
+        int count= productService.updateProduct(product);
+
+        if(count>0){
+            //添加成功
+            return "redirect:/user/product/findproduct";
+        }
+        return "product/index";
+        //return "productadd";
+    }
+
+    @RequestMapping(value = "productdown/{id}")
+    public  String  downProduct(Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("GBK");
+
+        product.setStatus(2);
+
+        int count= productService.updateProduct(product);
+
+        if(count>0){
+            //添加成功
+            return "redirect:/user/product/findproduct";
+        }
+        return "product/index";
+        //return "productadd";
+    }
 }

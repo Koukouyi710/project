@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
         <li class="sidebar-brand">
-            <a href="#">
+            <a href="/user/home">
                 卖家管理系统
             </a>
         </li>
@@ -33,7 +33,7 @@
             </ul>
         </li>
         <li>
-            <a href=""><i class="fa fa-fw fa-list-alt"></i> 登出</a>
+            <a href="/exit"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>
 </nav>

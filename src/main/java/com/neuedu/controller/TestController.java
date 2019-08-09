@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/test")
     public  String  login(){
 
-        return "old/login1";
+        return "test";
     }
 
 }
