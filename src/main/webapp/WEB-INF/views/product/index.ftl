@@ -17,10 +17,18 @@
                         <div class="form-group">
                             <label>类别Id</label>
                             <select name="categoryId" class="form-control">
-                                <option value="" style="display: none"></option>
+                                <option value="0">无父类</option>
+                                <#list categorylist as category>
+                                    <option value="${category.id}"
+                                        <#if (product.categoryId)?? && product.categoryId == category.id>
+                                                selected
+                                        </#if>
+                                    >${category.id}-${category.name}</option>
+                                <#--<option value="" style="display: none"></option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
-                                <option value="2">2</option>
+                                <option value="2">2</option>-->
+                                </#list>
                             </select>
                         </div>
 
@@ -51,11 +59,23 @@
 
                         <div class="form-group">
                             <label>商品状态</label>
+                            <#assign checkrole="${product.status}"/>
                             <select name="status" class="form-control">
-                                <option value="" style="display: none"></option>
-                                <option value="1">1-在售</option>
-                                <option value="2">2-下架</option>
-                                <option value="3">3-删除</option>
+                                <option value="1"
+                                <#if checkrole==1>
+                                            selected
+                                </#if>
+                                >1-在售</option>
+                                <option value="2"
+                                <#if checkrole==2>
+                                            selected
+                                </#if>
+                                >2-下架</option>
+                                <option value="3"
+                                <#if checkrole==3>
+                                            selected
+                                </#if>
+                                >3-删除</option>
                             </select>
                         </div>
 
@@ -64,7 +84,7 @@
                             <input id="productIcon" name="productIcon" type="text" hidden="hidden" value="${(productInfo.productIcon)!''}"/>
 
                             <div class="file-loading">
-                                <input id="input-id" type="file"  name="picfile">
+                                <input id="input-id" type="file"  name="picfile" multiple="multiple">
                                 <p class="help-block">支持jpg、jpeg、png、gif格式，大小不超过1M</p>
                             </div>
                         </div>
@@ -82,6 +102,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/fileinput.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
 
     $(function () {
@@ -91,7 +112,7 @@
         }
 
         $("#input-id").fileinput({
-            uploadUrl: '/sell/image/upload',
+            uploadUrl: '/upload',
             language: 'zh',
             browseClass: "btn btn-primary btn-block",
             showCaption: false,

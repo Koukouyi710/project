@@ -30,6 +30,7 @@
                         </thead>
                         <tbody>
                         <#list userlist as user>
+                        <#assign checkrole="${user.role}"/>
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.username}</td>
@@ -38,7 +39,13 @@
                             <td>${user.phone}</td>
                             <td>${user.question}</td>
                             <td>${user.answer}</td>
-                            <td>${user.role}</td>
+                            <#if checkrole==0>
+                                <td>${user.role}-管理员</td>
+                            </#if>
+                            <#if checkrole==1>
+                                <td>${user.role}-普通用户</td>
+                            </#if>
+                            <#--<td>${user.role}</td>-->
                             <td>${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>${user.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>

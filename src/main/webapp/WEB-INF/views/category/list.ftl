@@ -26,11 +26,27 @@
                         </thead>
                         <tbody>
                         <#list categorylist as category>
+                        <#assign checkparentId="${category.parentId}"/>
                         <tr>
                             <td>${category.id}</td>
                             <td>${category.name}</td>
-                            <td>${category.parentId}</td>
-                            <td>${category.status}</td>
+                            <#list categorylist as category1>
+                                <#if checkparentId==category1.id>
+                                    <td>${category.parentId}-${category1.name}</td>
+                                </#if>
+                            </#list>
+                            <#if checkparentId==0>
+                                    <td>${category.parentId}-无父类</td>
+                            </#if>
+                            <#--<td>${category.parentId}</td>-->
+                            <#assign checkstatus="${category.status}"/>
+                             <#if checkstatus==1>
+                                    <td>${category.status}-正常</td>
+                             </#if>
+                            <#if checkstatus==2>
+                                    <td>${category.status}-已废弃</td>
+                            </#if>
+                            <#--<td>${category.status}</td>-->
                             <td>${category.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>${category.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td><a href="/user/category/update/${category.id}">修改</a>

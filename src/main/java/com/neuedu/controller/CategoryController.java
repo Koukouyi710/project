@@ -38,8 +38,11 @@ public class CategoryController {
 
 
     @RequestMapping(value = "update/{id}",method = RequestMethod.GET)
-    public  String  update(@PathVariable("id") Integer categoryId, HttpServletRequest request){
+    public  String  update(HttpSession session,@PathVariable("id") Integer categoryId, HttpServletRequest request){
 
+        List<Category> categoryList=categoryService.findAll();
+
+        session.setAttribute("categorylist",categoryList);
 
         Category category=categoryService.findCategoryById(categoryId);
 
@@ -79,7 +82,12 @@ public class CategoryController {
 
     //添加类别
     @RequestMapping(value = "categoryadd",method = RequestMethod.GET)
-    public String addCategory(){
+    public String addCategory(HttpSession session){
+
+        List<Category> categoryList=categoryService.findAll();
+
+        session.setAttribute("categorylist",categoryList);
+
         return "category/index";
         //return "categoryadd";
     }

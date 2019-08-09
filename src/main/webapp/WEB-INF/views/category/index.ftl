@@ -17,23 +17,38 @@
                             <label>类别名称</label>
                             <input type="text" name="name" class="form-control" value="${category.name}"/>
                         </div>
-
+                     <#assign checkparentId="${category.parentId}"/>
                         <div class="form-group">
                             <label>父类id</label>
                             <select name="parentId" class="form-control">
-                                    <option value="" style="display: none"></option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    <option value="0">无父类</option>
+                                    <#list categorylist as category>
+                                    <option value="${category.id}"
+                                    <#if (category.id)??&&checkparentId==category.id>
+                                            selected
+                                    </#if>
+                                    >${category.id}-${category.name}</option>
+                                <#--<option value="" style="display: none"></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>-->
+                                </#list>
                             </select>
                         </div>
-
+                        <#assign checkstatus="${category.status}"/>
                         <div class="form-group">
                             <label>类别状态</label>
                             <select name="status" class="form-control">
-                                <option value="" style="display: none"></option>
-                                <option value="1">1-正常</option>
-                                <option value="2">2-已废弃</option>
+                                <option value="1"
+                                  <#if checkstatus==1>
+                                            selected
+                                  </#if>
+                                >1-正常</option>
+                                <option value="2"
+                                <#if checkstatus==2>
+                                            selected
+                                </#if>
+                                >2-已废弃</option>
                             </select>
                         </div>
 

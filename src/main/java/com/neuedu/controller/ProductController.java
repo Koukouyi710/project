@@ -1,6 +1,8 @@
 package com.neuedu.controller;
 
+import com.neuedu.pojo.Category;
 import com.neuedu.pojo.Product;
+import com.neuedu.service.ICategoryService;
 import com.neuedu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,16 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.UUID;
 
+import static com.neuedu.consts.Const.CURRENT_ADDR;
+
 @Controller
 @RequestMapping("/user/product/")
 public class ProductController {
     @Autowired
     IProductService productService;
+
+    @Autowired
+    ICategoryService categoryService;
 
     @RequestMapping("findproduct")
     public  String  findAll(HttpSession session){
@@ -32,14 +39,25 @@ public class ProductController {
 
         session.setAttribute("productlist",productList);
 
+        List<Category> categoryList=categoryService.findAll();
+
+        session.setAttribute("categorylist",categoryList);
+
         return "product/list";
         //return "productlist";
     }
 
 
     @RequestMapping(value = "productupdate/{id}",method = RequestMethod.GET)
-    public  String  update(@PathVariable("id") Integer productId, HttpServletRequest request){
+    public  String  update(HttpSession session,@PathVariable("id") Integer productId, HttpServletRequest request){
 
+        List<Product> productList=productService.findAll();
+
+        session.setAttribute("productlist",productList);
+
+        List<Category> categoryList=categoryService.findAll();
+
+        session.setAttribute("categorylist",categoryList);
 
         Product product=productService.findProductById(productId);
 
@@ -66,11 +84,11 @@ public class ProductController {
             System.out.println("===新名="+newFileName+"===");
 
             if(product.getMainImage()==null||product.getMainImage().equals("")){
-                product.setMainImage("D:\\upload\\"+newFileName);
-                product.setSubImages("D:\\upload\\"+newFileName);
+                product.setMainImage(CURRENT_ADDR+newFileName);
+                product.setSubImages(CURRENT_ADDR+newFileName);
             }
             else{
-                product.setSubImages(product.getSubImages()+";D:\\upload\\"+newFileName);
+                product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
             }
             File file = new File("D:\\upload");
             if(!file.exists()){
@@ -109,7 +127,16 @@ public class ProductController {
 
     //添加类别
     @RequestMapping(value = "productadd",method = RequestMethod.GET)
-    public String addProduct(){
+    public String addProduct(HttpSession session){
+
+        List<Product> productList=productService.findAll();
+
+        session.setAttribute("productlist",productList);
+
+        List<Category> categoryList=categoryService.findAll();
+
+        session.setAttribute("categorylist",categoryList);
+
         return "product/index";
         //return "productadd";
     }
@@ -133,11 +160,11 @@ public class ProductController {
 
             System.out.println(product.getMainImage());
             if(product.getMainImage()==null||product.getMainImage().equals("")){
-                product.setMainImage("D:\\upload\\"+newFileName);
-                product.setSubImages("D:\\upload\\"+newFileName);
+                product.setMainImage(CURRENT_ADDR+newFileName);
+                product.setSubImages(CURRENT_ADDR+newFileName);
             }
             else{
-                product.setSubImages(product.getSubImages()+";D:\\upload\\"+newFileName);
+                product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
             }
             File file = new File("D:\\upload");
             if(!file.exists()){

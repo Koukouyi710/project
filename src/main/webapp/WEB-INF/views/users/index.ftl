@@ -43,13 +43,20 @@
                             <label>找回密码答案</label>
                             <input type="text" name="answer" class="form-control"  value="${user.answer}">
                         </div>
-
+                        <#assign checkrole="${user.role}"/>
                         <div class="form-group">
                             <label>角色</label>
                             <select name="role" class="form-control">
-                                <option value="" style="display: none"></option>
-                                <option value="0">0-管理员</option>
-                                <option value="1">1-普通用户</option>
+                                <option value="0"
+                                <#if checkrole==0>
+                                            selected
+                                </#if>
+                                >0-管理员</option>
+                                <option value="1"
+                                <#if checkrole!=0>
+                                            selected
+                                </#if>
+                                >1-普通用户</option>
                             </select>
                         </div>
 

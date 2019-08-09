@@ -13,12 +13,7 @@ import java.util.UUID;
 @Controller
 public class uploadController {
 
-    @RequestMapping(value = "/upload",method = RequestMethod.GET)
-    public String upload(){
-        return "upload";
-    }
-
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/upload")
     public String upload(@RequestParam("picfile")MultipartFile uploadFile){
         if(uploadFile!=null){
 
@@ -44,6 +39,6 @@ public class uploadController {
             }
 
         }
-        return "upload";
+        return "product/index";
     }
 }

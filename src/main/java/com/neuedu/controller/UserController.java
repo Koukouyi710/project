@@ -72,8 +72,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "updateuser/{id}",method = RequestMethod.GET)
-    public  String  update(@PathVariable("id") Integer userId, HttpServletRequest request){
+    public  String  update(HttpSession session,@PathVariable("id") Integer userId, HttpServletRequest request){
 
+        List<UserInfo> userlist=userService.findAll();
+
+        session.setAttribute("userlist",userlist);
 
         UserInfo user=userService.findUserById(userId);
 
@@ -113,7 +116,12 @@ public class UserController {
 
     //添加用户
     @RequestMapping(value = "useradd",method = RequestMethod.GET)
-    public String addCategory(){
+    public String addCategory(HttpSession session){
+
+        List<UserInfo> userlist=userService.findAll();
+
+        session.setAttribute("userlist",userlist);
+
         return "users/index";
         //return "useradd";
     }

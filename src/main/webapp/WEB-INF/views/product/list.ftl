@@ -34,7 +34,16 @@
                         <#list productlist as product>
                         <tr>
                             <td>${product.id}</td>
-                            <td>${product.categoryId}</td>
+                            <#assign checkcategoryId="${product.categoryId}"/>
+                            <#if checkcategoryId==0>
+                                    <td>${product.categoryId}-无父类</td>
+                            </#if>
+                            <#list categorylist as category>
+                                <#if checkcategoryId==category.id>
+                                    <td>${product.categoryId}-${category.name}</td>
+                                </#if>
+                            </#list>
+                            <#--<td>${product.categoryId}</td>-->
                             <td>${product.name}</td>
                             <td>${product.subtitle}</td>
                             <#--<td>${product.mainImage}</td>-->
@@ -43,7 +52,17 @@
                             <td>${product.detail}</td>
                             <td>${product.price}</td>
                             <td>${product.stock}</td>
-                            <td>${product.status}</td>
+                            <#assign checkstatus="${product.status}"/>
+                             <#if checkstatus==1>
+                                    <td>${product.status}-在售</td>
+                             </#if>
+                            <#if checkstatus==2>
+                                    <td>${product.status}-下架</td>
+                            </#if>
+                            <#if checkstatus==3>
+                                    <td>${product.status}-删除</td>
+                            </#if>
+                            <#--<td>${product.status}</td>-->
                             <td>${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td><a href="/user/product/productupdate/${product.id}">修改</a>
