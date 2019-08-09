@@ -60,6 +60,33 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int addUser(UserInfo userInfo) throws MyException {
+        if(userInfo==null){
+            throw  new MyException("参数不能为空");
+        }
+        if(userInfo.getUsername()==null||userInfo.getUsername().equals("")){
+            throw  new MyException("用户名不能为空");
+        }
+        int username_result= userInfoMapper.exsitsUsername(userInfo.getUsername());
+
+        if(username_result!=0){//用户名存在
+
+            throw  new MyException("用户名已存在");
+        }
+        if(userInfo.getPassword()==null||userInfo.getPassword().equals("")){
+            throw  new MyException("密码不能为空");
+        }
+        if(userInfo.getEmail()==null||userInfo.getEmail().equals("")){
+            throw  new MyException("email不能为空");
+        }
+        if(userInfo.getPhone()==null||userInfo.getPhone().equals("")){
+            throw  new MyException("phone不能为空");
+        }
+        if(userInfo.getQuestion()==null||userInfo.getQuestion().equals("")){
+            throw  new MyException("密保问题不能为空");
+        }
+        if(userInfo.getAnswer()==null||userInfo.getAnswer().equals("")){
+            throw  new MyException("密保问题答案不能为空");
+        }
         return userInfoMapper.insert(userInfo);
     }
 

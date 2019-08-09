@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public  String login(UserInfo userInfo, HttpSession session,HttpServletResponse response){
+    public  String login(UserInfo userInfo, HttpSession session, HttpServletResponse response){
 
        UserInfo loginUserInfo= userService.login(userInfo);
 

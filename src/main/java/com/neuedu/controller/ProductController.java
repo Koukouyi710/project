@@ -68,38 +68,40 @@ public class ProductController {
     }
 
     @RequestMapping(value = "productupdate/{id}",method = RequestMethod.POST)
-    public  String  update(@RequestParam("picfile")MultipartFile uploadFile,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public  String  update(@RequestParam("picfile")MultipartFile[] uploadFilelist,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
-        if(uploadFile!=null||!uploadFile.equals("")){
+        if(uploadFilelist!=null||!uploadFilelist.equals("")){
 
-            String uuid = UUID.randomUUID().toString();
-            //获取扩展名
-            String fileName = uploadFile.getOriginalFilename();
-            System.out.println("===filename="+fileName+"===");
-            String extraName = fileName.substring(fileName.lastIndexOf("."));
+            for (MultipartFile uploadFile:uploadFilelist){
+                String uuid = UUID.randomUUID().toString();
+                //获取扩展名
+                String fileName = uploadFile.getOriginalFilename();
+                System.out.println("===filename="+fileName+"===");
+                String extraName = fileName.substring(fileName.lastIndexOf("."));
 
-            String newFileName = uuid+extraName;
-            System.out.println("===新名="+newFileName+"===");
+                String newFileName = uuid+extraName;
+                System.out.println("===新名="+newFileName+"===");
 
-            if(product.getMainImage()==null||product.getMainImage().equals("")){
-                product.setMainImage(CURRENT_ADDR+newFileName);
-                product.setSubImages(CURRENT_ADDR+newFileName);
-            }
-            else{
-                product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
-            }
-            File file = new File("D:\\upload");
-            if(!file.exists()){
-                file.mkdir();
-            }
-            File newFile = new File(file,newFileName);
+                if(product.getMainImage()==null||product.getMainImage().equals("")){
+                    product.setMainImage(CURRENT_ADDR+newFileName);
+                    product.setSubImages(CURRENT_ADDR+newFileName);
+                }
+                else{
+                    product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
+                }
+                File file = new File("D:\\upload");
+                if(!file.exists()){
+                    file.mkdir();
+                }
+                File newFile = new File(file,newFileName);
 
-            try {
-                uploadFile.transferTo(newFile);
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    uploadFile.transferTo(newFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -142,40 +144,42 @@ public class ProductController {
     }
 
     @RequestMapping(value = "productadd",method = RequestMethod.POST)
-    public  String  addProduct(@RequestParam("picfile")MultipartFile uploadFile,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public  String  addProduct(@RequestParam("picfile")MultipartFile[] uploadFileList,Product product, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
 
-        if(uploadFile!=null||!uploadFile.equals("")){
+        if(uploadFileList!=null||!uploadFileList.equals("")){
 
-            String uuid = UUID.randomUUID().toString();
-            //获取扩展名
-            String fileName = uploadFile.getOriginalFilename();
-            System.out.println("===filename="+fileName+"===");
-            String extraName = fileName.substring(fileName.lastIndexOf("."));
+            for(MultipartFile uploadFile:uploadFileList){
+                String uuid = UUID.randomUUID().toString();
+                //获取扩展名
+                String fileName = uploadFile.getOriginalFilename();
+                System.out.println("===filename="+fileName+"===");
+                String extraName = fileName.substring(fileName.lastIndexOf("."));
 
-            String newFileName = uuid+extraName;
-            System.out.println("===新名="+newFileName+"===");
+                String newFileName = uuid+extraName;
+                System.out.println("===新名="+newFileName+"===");
 
-            System.out.println(product.getMainImage());
-            if(product.getMainImage()==null||product.getMainImage().equals("")){
-                product.setMainImage(CURRENT_ADDR+newFileName);
-                product.setSubImages(CURRENT_ADDR+newFileName);
-            }
-            else{
-                product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
-            }
-            File file = new File("D:\\upload");
-            if(!file.exists()){
-                file.mkdir();
-            }
-            File newFile = new File(file,newFileName);
+                System.out.println(product.getMainImage());
+                if(product.getMainImage()==null||product.getMainImage().equals("")){
+                    product.setMainImage(CURRENT_ADDR+newFileName);
+                    product.setSubImages(CURRENT_ADDR+newFileName);
+                }
+                else{
+                    product.setSubImages(product.getSubImages()+";"+CURRENT_ADDR+newFileName);
+                }
+                File file = new File("D:\\upload");
+                if(!file.exists()){
+                    file.mkdir();
+                }
+                File newFile = new File(file,newFileName);
 
-            try {
-                uploadFile.transferTo(newFile);
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    uploadFile.transferTo(newFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         }

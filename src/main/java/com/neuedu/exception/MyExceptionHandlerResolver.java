@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Component
@@ -18,19 +19,18 @@ public class MyExceptionHandlerResolver implements HandlerExceptionResolver {
                                          HttpServletResponse response,
                                          Object handler,
                                          Exception ex) {
-
-
         System.out.println("============="+ex.getMessage());
         ModelAndView modelAndView=null;
         if (ex instanceof MyException){
             MyException myException=(MyException) ex;
-            String error= myException.getDirector();
+
             modelAndView=new ModelAndView();
             modelAndView.setViewName("common/error");  //逻辑视图
             Map<String,Object> model= modelAndView.getModel();
-            model.put("es",ex.getMessage());
+            model.put("msg",ex.getMessage());
+            model.put("url",((MyException) ex).getDirector());
             return modelAndView;
         }
-        return modelAndView;
+        return resolveException(request,response,handler,ex);
     }
 }

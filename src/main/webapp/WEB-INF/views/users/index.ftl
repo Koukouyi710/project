@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label>用户密码</label>
-                            <input type="text" name="password"  class="form-control" value="${user.password}" class="form-control"/>
+                            <input type="text" name="password"  class="form-control" value="" class="form-control"/>
                         </div>
 
                         <div class="form-group">

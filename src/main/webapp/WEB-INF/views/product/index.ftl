@@ -122,7 +122,7 @@
             maxFileSize: 1024,
             autoReplace: true,
             overwriteInitial: true,
-            maxFileCount: 1,
+            maxFileCount: 5,
             initialPreview: initialPreview,
         });
     });

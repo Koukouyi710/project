@@ -140,7 +140,13 @@
                                 <td width="100">${product.subtitle}</td>
                             <#--<td>${product.mainImage}</td>-->
                                 <td><img height="100" width="100" src="${product.mainImage}" alt=""></td>
-                                <td>${product.subImages}</td>
+                                <#assign subimg="${product.subImages}"/>
+                                <#assign imglist=subimg.split(";")/>
+                                <#list imglist as img>
+                                    <td><img height="100" width="100" src="${img}" alt="">${subimg}</td>
+                                </#list>
+                                <td>${newsubimg}</td>
+                                <#--<td>${product.subImages}</td>-->
                                 <td width="200">${product.detail}</td>
                                 <td width="100">${product.price}</td>
                                 <td width="100">${product.stock}</td>

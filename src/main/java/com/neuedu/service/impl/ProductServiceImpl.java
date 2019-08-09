@@ -18,6 +18,15 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public int addProduct(Product product) throws MyException {
+        if(product.getName()==null||product.getName().equals("")){
+            throw  new MyException("添加失败：商品名称不能为空");
+        }
+        if(product.getPrice()==null||product.getPrice().equals("")){
+            throw  new MyException("添加失败：请设置商品价格");
+        }
+        if(product.getStock()==null||product.getStock().equals("")){
+            throw  new MyException("添加失败：请设置商品库存");
+        }
         return productMapper.insert(product);
     }
 
