@@ -33,39 +33,39 @@
                         <tbody>
                         <#list productlist as product>
                         <tr>
-                            <td>${product.id}</td>
+                            <td width="80">${product.id}</td>
                             <#assign checkcategoryId="${product.categoryId}"/>
                             <#if checkcategoryId==0>
-                                    <td>${product.categoryId}-无父类</td>
+                                    <td width="100">${product.categoryId}-无父类</td>
                             </#if>
                             <#list categorylist as category>
                                 <#if checkcategoryId==category.id>
-                                    <td>${product.categoryId}-${category.name}</td>
+                                    <td width="100">${product.categoryId}-${category.name}</td>
                                 </#if>
                             </#list>
                             <#--<td>${product.categoryId}</td>-->
-                            <td>${product.name}</td>
-                            <td>${product.subtitle}</td>
+                            <td width="100">${product.name}</td>
+                            <td width="100">${product.subtitle}</td>
                             <#--<td>${product.mainImage}</td>-->
                             <td><img height="100" width="100" src="${product.mainImage}" alt=""></td>
                             <td>${product.subImages}</td>
-                            <td>${product.detail}</td>
-                            <td>${product.price}</td>
-                            <td>${product.stock}</td>
+                            <td width="200">${product.detail}</td>
+                            <td width="100">${product.price}</td>
+                            <td width="100">${product.stock}</td>
                             <#assign checkstatus="${product.status}"/>
                              <#if checkstatus==1>
-                                    <td>${product.status}-在售</td>
+                                    <td width="120">${product.status}-在售</td>
                              </#if>
                             <#if checkstatus==2>
-                                    <td>${product.status}-下架</td>
+                                    <td width="120">${product.status}-下架</td>
                             </#if>
                             <#if checkstatus==3>
-                                    <td>${product.status}-删除</td>
+                                    <td width="120">${product.status}-删除</td>
                             </#if>
                             <#--<td>${product.status}</td>-->
-                            <td>${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                            <td>${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                            <td><a href="/user/product/productupdate/${product.id}">修改</a>
+                            <td width="200">${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                            <td width="200">${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                            <td width="50"><a href="/user/product/productupdate/${product.id}">修改</a>
                                 <a href="productdelete/${product.id}" >删除</a>
                             </td>
                             <td>
