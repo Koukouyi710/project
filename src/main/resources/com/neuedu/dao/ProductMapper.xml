@@ -112,4 +112,41 @@
     update_time, sub_images, detail
     from neuedu_product
   </select>
+
+  <!--查询所有上架商品数据 -->
+  <select id="selectCountup" resultType="int">
+    select count(*) from neuedu_product
+    where status = 1
+  </select>
+
+  <!--查询未上架商品数据 -->
+  <select id="selectCountdown" resultType="int">
+    select count(*) from neuedu_product
+    where status = 2
+  </select>
+
+  <!-- 根据分页数据start 和size查询数据 -->
+  <select id="findByPageup" parameterType="Map" resultMap="BaseResultMap">
+    select
+    id, category_id, name, subtitle, main_image, price, stock, status, create_time,
+    update_time, sub_images, detail
+    from neuedu_product
+    where status = 1
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
+  <!-- 根据分页数据start 和size查询数据 -->
+  <select id="findByPagedown" parameterType="Map" resultMap="BaseResultMap">
+    select
+    id, category_id, name, subtitle, main_image, price, stock, status, create_time,
+    update_time, sub_images, detail
+    from neuedu_product
+    where status = 2
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.neuedu.service;
 
 import com.neuedu.exception.MyException;
+import com.neuedu.pojo.Page;
 import com.neuedu.pojo.Product;
 
 
@@ -31,4 +32,16 @@ public interface IProductService {
      * */
 
     public Product findProductById(int productId);
+
+    //上架商品数量
+    int selectCountup();
+
+    //未上架商品数量
+    int selectCountdown();
+
+    //分页
+    Page<Product> findByPageup(int currentPage);
+
+    //分页
+    Page<Product> findByPagedown(int currentPage);
 }

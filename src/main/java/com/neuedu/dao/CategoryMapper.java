@@ -3,6 +3,7 @@ package com.neuedu.dao;
 import com.neuedu.pojo.Category;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface CategoryMapper {
@@ -45,4 +46,9 @@ public interface CategoryMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(@Param("category") Category record);
+    //总共数量
+    int selectCount();
+
+    //分页
+    List<Category> findByPage(HashMap<String,Object> map);
 }

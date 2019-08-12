@@ -44,9 +44,7 @@ public class UserController {
         if(loginUserInfo!=null){
             session.setAttribute(Const.CURRENT_USER,loginUserInfo);
             Cookie username_cookie = new Cookie("username",loginUserInfo.getUsername());
-
-            String cpwd = MD5Utils.getMD5Code(userInfo.getPassword());
-            Cookie password_cookie = new Cookie("password",cpwd);
+            Cookie password_cookie = new Cookie("password",loginUserInfo.getPassword());
             //Cookie password_cookie = new Cookie("password",loginUserInfo.getPassword());
 
             username_cookie.setMaxAge(60*60*24*7);
@@ -98,8 +96,11 @@ public class UserController {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("GBK");
 
-        String pwd = MD5Utils.getMD5Code(user.getPassword());
-        user.setPassword(pwd);
+        if (user.getPassword()!=null&&!user.getPassword().equals(""))
+        {
+            String pwd = MD5Utils.getMD5Code(user.getPassword());
+            user.setPassword(pwd);
+        }
         //
         int count= userService.updateUser(user);
 

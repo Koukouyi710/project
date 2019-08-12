@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list productlist as product>
+                        <#list uplist.getList() as product>
                         <#if "${product.status}"==1>
                             <tr>
                                 <td width="80">${product.id}</td>
@@ -75,28 +75,27 @@
                         </#list>
                         </tbody>
                     </table>
-
                 <#--分页-->
                     <div class="col-md-12 column">
                         <ul class="pagination pull-right">
-                    <#if currentPage lte 1>
+                    <#if uplist.getCurrentPage() lte 1>
                         <li class="disabled"><a href="#">上一页</a></li>
                     <#else>
-                        <li><a href="list.ftl?page=${currentPage - 1}&size=${size}">上一页</a></li>
+                        <li><a href="/user/product/findproduct?currentPageup=${uplist.getCurrentPage() - 1}">上一页</a></li>
                     </#if>
 
-                    <#list 1..productInfoPage.getTotalPages() as index>
-                        <#if currentPage == index>
+                    <#list 1..uplist.getTotalPages() as index>
+                        <#if uplist.getCurrentPage() == index>
                             <li class="disabled"><a href="#">${index}</a></li>
                         <#else>
-                            <li><a href="list.ftl?page=${index}&size=${size}">${index}</a></li>
+                            <li><a href="/user/product/findproduct?currentPageup=${index}">${index}</a></li>
                         </#if>
                     </#list>
 
-                    <#if currentPage gte productInfoPage.getTotalPages()>
+                    <#if uplist.getCurrentPage() gte uplist.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else>
-                        <li><a href="list.ftl?page=${currentPage + 1}&size=${size}">下一页</a></li>
+                        <li><a href="/user/product/findproduct?currentPageup=${uplist.getCurrentPage() + 1}">下一页</a></li>
                     </#if>
                         </ul>
                     </div>
@@ -122,7 +121,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list productlist as product>
+                        <#list downlist.getList() as product>
                         <#if "${product.status}"==2>
                             <tr>
                                 <td width="80">${product.id}</td>
@@ -177,25 +176,58 @@
             <#--分页-->
                 <div class="col-md-12 column">
                     <ul class="pagination pull-right">
-                    <#if currentPage lte 1>
-                        <li class="disabled"><a href="#">上一页</a></li>
-                    <#else>
-                        <li><a href="list.ftl?page=${currentPage - 1}&size=${size}">上一页</a></li>
-                    </#if>
+                            <#if downlist.getCurrentPage() lte 1>
+                                <li class="disabled"><a href="#">上一页</a></li>
+                            <#else>
+                                <li><a href="/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() - 1}">上一页</a></li>
+                            </#if>
+                     <#--下面的这段适合于总页数比较少的分页-->
+                     <#list 1..downlist.getTotalPages() as index >
+                         <#if downlist.getCurrentPage() == index>
+                             <li class="disabled"><a href="#">${index}</a></li>
+                         <#else>
+                             <li><a href="/user/product/findproduct?currentPagedown=${index}">${index}</a></li>
+                         </#if>
+                     </#list>
 
-                    <#list 1..productInfoPage.getTotalPages() as index>
-                        <#if currentPage == index>
-                            <li class="disabled"><a href="#">${index}</a></li>
-                        <#else>
-                            <li><a href="list.ftl?page=${index}&size=${size}">${index}</a></li>
-                        </#if>
-                    </#list>
 
-                    <#if currentPage gte productInfoPage.getTotalPages()>
-                        <li class="disabled"><a href="#">下一页</a></li>
-                    <#else>
-                        <li><a href="list.ftl?page=${currentPage + 1}&size=${size}">下一页</a></li>
-                    </#if>
+                    <#--&lt;#&ndash; 以下为带省略号分页 &ndash;&gt;
+                    &lt;#&ndash;第一页&ndash;&gt;
+                            <#if (downlist.getTotalPages() > 0)>
+                                <li <#if (downlist.getCurrentPage() == 1)>class="disabled"</#if>><a href="/user/product/downlist/1">1</a></li>
+                            </#if>
+
+                    &lt;#&ndash;如果不只有一页&ndash;&gt;
+                            <#if (downlist.getTotalPages() > 1)>
+                            &lt;#&ndash;如果当前页往前查3页不是第2页&ndash;&gt;
+                                <#if ((downlist.getCurrentPage() - 3) > 2)>
+                                    <li><span class="text">…</span></li>
+                                </#if>
+
+                            &lt;#&ndash;当前页的前3页和后3页&ndash;&gt;
+                                <#list (downlist.getCurrentPage() - 3)..(downlist.getCurrentPage() + 3) as index>
+                                &lt;#&ndash;如果位于第一页和最后一页之间&ndash;&gt;
+                                    <#if (index > 1) && (index < downlist.getTotalPages())>
+                                        <li <#if (downlist.getCurrentPage() == index)>class="disabled"</#if>><a href="/user/product/downlist/${index}" >${index}</a></li>
+                                    </#if>
+                                </#list>
+
+                            &lt;#&ndash;如果当前页往后查3页不是倒数第2页&ndash;&gt;
+                                <#if (downlist.getCurrentPage() + 3) < (downlist.getTotalPages() - 1)>
+                                    <li><span class="text">…</span></li>
+                                </#if>
+
+                            &lt;#&ndash;最后页&ndash;&gt;
+                                <li <#if (downlist.getCurrentPage() == downlist.getTotalPages())>class="disabled"</#if>><a href="/user/product/downlist/${downlist.getTotalPages()}" >${downlist.getTotalPages()}</a></li>
+                            </#if>
+-->
+
+
+                            <#if downlist.getCurrentPage() gte downlist.getTotalPages()>
+                                <li class="disabled"><a href="#">下一页</a></li>
+                            <#else>
+                                <li><a href="/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() + 1}">下一页</a></li>
+                            </#if>
                     </ul>
                 </div>
             </div>
