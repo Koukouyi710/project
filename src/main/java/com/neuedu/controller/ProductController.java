@@ -94,7 +94,7 @@ public class ProductController {
                 } else {
                     product.setSubImages(product.getSubImages() + ";" + CURRENT_ADDR + newFileName);
                 }
-                File file = new File("D:\\upload");
+                File file = new File("/neuedu");
                 if (!file.exists()) {
                     file.mkdir();
                 }
@@ -171,7 +171,7 @@ public class ProductController {
                 } else {
                     product.setSubImages(product.getSubImages() + ";" + CURRENT_ADDR + newFileName);
                 }
-                File file = new File("D:\\upload");
+                File file = new File("/neuedu");
                 if (!file.exists()) {
                     file.mkdir();
                 }
