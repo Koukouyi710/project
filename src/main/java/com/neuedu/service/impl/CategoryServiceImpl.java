@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public int addCategory(Category category) throws MyException {
         if(category.getName()==null||category.getName().equals("")){
-            throw  new MyException("添加失败：类别名称不能为空");
+            throw  new MyException("添加失败：类别名称不能为空","categoryadd");
         }
         return categoryMapper.insert(category);
     }
