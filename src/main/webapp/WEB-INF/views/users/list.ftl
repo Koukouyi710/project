@@ -49,7 +49,7 @@
                             <td>${user.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>${user.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>
-                                <a href="/user/updateuser/${user.id}" >修改</a>
+                                <a href="/project/user/updateuser/${user.id}" >修改</a>
                                 <a href="deleteuser/${user.id}" >删除</a>
                             </td>
                         </tr>

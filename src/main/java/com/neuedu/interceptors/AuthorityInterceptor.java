@@ -59,7 +59,7 @@ public class AuthorityInterceptor implements HandlerInterceptor{
         else{
 
             try {
-                response.sendRedirect("/user/login");
+                response.sendRedirect("/project/user/login");
             } catch (IOException e) {
                 e.printStackTrace();
             }

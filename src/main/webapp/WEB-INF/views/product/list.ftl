@@ -67,7 +67,7 @@
                             <#--<td>${product.status}</td>-->
                                 <td width="200">${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                 <td width="200">${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                                <td width="50"><a href="/user/product/productupdate/${product.id}">修改</a>
+                                <td width="50"><a href="/project/user/product/productupdate/${product.id}">修改</a>
                                     <a href="productdown/${product.id}" >下架</a>
                                 </td>
                             </tr>
@@ -81,21 +81,21 @@
                     <#if uplist.getCurrentPage() lte 1>
                         <li class="disabled"><a href="#">上一页</a></li>
                     <#else>
-                        <li><a href="/user/product/findproduct?currentPageup=${uplist.getCurrentPage() - 1}">上一页</a></li>
+                        <li><a href="/project/user/product/findproduct?currentPageup=${uplist.getCurrentPage() - 1}">上一页</a></li>
                     </#if>
 
                     <#list 1..uplist.getTotalPages() as index>
                         <#if uplist.getCurrentPage() == index>
                             <li class="disabled"><a href="#">${index}</a></li>
                         <#else>
-                            <li><a href="/user/product/findproduct?currentPageup=${index}">${index}</a></li>
+                            <li><a href="/project/user/product/findproduct?currentPageup=${index}">${index}</a></li>
                         </#if>
                     </#list>
 
                     <#if uplist.getCurrentPage() gte uplist.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else>
-                        <li><a href="/user/product/findproduct?currentPageup=${uplist.getCurrentPage() + 1}">下一页</a></li>
+                        <li><a href="/project/user/product/findproduct?currentPageup=${uplist.getCurrentPage() + 1}">下一页</a></li>
                     </#if>
                         </ul>
                     </div>
@@ -162,7 +162,7 @@
                             <#--<td>${product.status}</td>-->
                                 <td width="200">${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                 <td width="200">${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                                <td width="50"><a href="/user/product/productupdate/${product.id}">修改</a>
+                                <td width="50"><a href="/project/user/product/productupdate/${product.id}">修改</a>
                                     <a href="productup/${product.id}" >上架</a>
                                     <a href="productdelete/${product.id}" >删除</a>
                                 </td>
@@ -179,14 +179,14 @@
                             <#if downlist.getCurrentPage() lte 1>
                                 <li class="disabled"><a href="#">上一页</a></li>
                             <#else>
-                                <li><a href="/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() - 1}">上一页</a></li>
+                                <li><a href="/project/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() - 1}">上一页</a></li>
                             </#if>
                      <#--下面的这段适合于总页数比较少的分页-->
                      <#list 1..downlist.getTotalPages() as index >
                          <#if downlist.getCurrentPage() == index>
                              <li class="disabled"><a href="#">${index}</a></li>
                          <#else>
-                             <li><a href="/user/product/findproduct?currentPagedown=${index}">${index}</a></li>
+                             <li><a href="/project/user/product/findproduct?currentPagedown=${index}">${index}</a></li>
                          </#if>
                      </#list>
 
@@ -226,7 +226,7 @@
                             <#if downlist.getCurrentPage() gte downlist.getTotalPages()>
                                 <li class="disabled"><a href="#">下一页</a></li>
                             <#else>
-                                <li><a href="/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() + 1}">下一页</a></li>
+                                <li><a href="/project/user/product/findproduct?currentPagedown=${downlist.getCurrentPage() + 1}">下一页</a></li>
                             </#if>
                     </ul>
                 </div>

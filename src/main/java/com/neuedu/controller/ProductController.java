@@ -24,7 +24,7 @@ import java.util.UUID;
 import static com.neuedu.consts.Const.CURRENT_ADDR;
 
 @Controller
-@RequestMapping("/project/user/product/")
+@RequestMapping("/user/product/")
 public class ProductController {
     @Autowired
     IProductService productService;

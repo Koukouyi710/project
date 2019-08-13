@@ -12,20 +12,20 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ExitController {
 
-    @RequestMapping("/project/exit")
+    @RequestMapping("/exit")
     /*@CookieValue("username")Cookie username_cookie,@CookieValue("password")Cookie password_cookie*/
     public String exit(HttpServletRequest request, HttpServletResponse response){
         Cookie username_cookie = new Cookie("username",null);
         Cookie password_cookie = new Cookie("password",null);
         password_cookie.setMaxAge(0);
-        password_cookie.setPath("/user");
+        password_cookie.setPath("/project/user");
         /**
          *火狐浏览器
-         * password_cookie.setPath("/user/");
+         * password_cookie.setPath("/project/user/");
          * */
         response.addCookie(password_cookie);
         username_cookie.setMaxAge(0);
-        username_cookie.setPath("/user");
+        username_cookie.setPath("/project/user");
         /**
          *火狐浏览器
          * username_cookie.setPath("/user/");

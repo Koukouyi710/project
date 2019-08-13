@@ -184,9 +184,6 @@ button:active {
   border-radius:30px;
   width:450px;
 }
-.connect a.facebook { background: url(../img/facebook.png) center center no-repeat; }
-.connect a.twitter { background: url(../img/twitter.png) center center no-repeat; }
-
 .connect a:hover { background-position: center bottom; }
 
 

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/project/user/order/")
+@RequestMapping("/user/order/")
 public class OrderController {
 
     @RequestMapping("findorder")

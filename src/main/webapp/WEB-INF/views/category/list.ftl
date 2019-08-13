@@ -49,7 +49,7 @@
                             <#--<td>${category.status}</td>-->
                             <td>${category.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                             <td>${category.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                            <td><a href="/user/category/update/${category.id}">修改</a>
+                            <td><a href="/project/user/category/update/${category.id}">修改</a>
                                 <a href="delete/${category.id}" >删除</a></td>
                         </tr>
                         </#list>
