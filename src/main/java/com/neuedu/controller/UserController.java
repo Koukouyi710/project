@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/project/user/")
 public class UserController {
 
     @Autowired

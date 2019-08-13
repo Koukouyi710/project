@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ExitController {
 
-    @RequestMapping("/exit")
+    @RequestMapping("/project/exit")
     /*@CookieValue("username")Cookie username_cookie,@CookieValue("password")Cookie password_cookie*/
     public String exit(HttpServletRequest request, HttpServletResponse response){
         Cookie username_cookie = new Cookie("username",null);
