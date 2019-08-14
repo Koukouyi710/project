@@ -3,6 +3,7 @@ package com.neuedu.dao;
 import com.neuedu.pojo.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface UserInfoMapper {
@@ -59,4 +60,10 @@ public interface UserInfoMapper {
 
     UserInfo findByUsernameAndPassword(@Param("user") UserInfo userInfo);
 
+
+    //总共数量
+    int selectCount();
+
+    //分页
+    List<UserInfo> findByPage(HashMap<String,Object> map);
 }

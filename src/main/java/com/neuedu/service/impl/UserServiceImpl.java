@@ -2,11 +2,13 @@ package com.neuedu.service.impl;
 
 import com.neuedu.dao.UserInfoMapper;
 import com.neuedu.exception.MyException;
+import com.neuedu.pojo.Page;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -103,5 +105,40 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserInfo findUserById(int userId) {
         return userInfoMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public int selectCount() {
+        return userInfoMapper.selectCount();
+    }
+
+    @Override
+    public Page<UserInfo> findByPage(int currentPage) {
+        HashMap<String,Object> map = new HashMap<String,Object>();
+        Page<UserInfo> pageBean = new Page<UserInfo>();
+
+        //封装当前页数
+        pageBean.setCurrentPage(currentPage);
+
+        //每页显示的数据
+        int pageSize=5;
+        pageBean.setSize(pageSize);
+
+        //封装总记录数
+        int totalCount = userInfoMapper.selectCount();
+        pageBean.setTotalCount(totalCount);
+
+        //封装总页数
+        double tc = totalCount;
+        Double num =Math.ceil(tc/pageSize);//向上取整
+        pageBean.setTotalPages(num.intValue());
+
+        map.put("start",(currentPage-1)*pageSize);
+        map.put("size", pageBean.getSize());
+        //封装每页显示的数据
+        List<UserInfo> lists = userInfoMapper.findByPage(map);
+        pageBean.setList(lists);
+
+        return pageBean;
     }
 }

@@ -33,6 +33,6 @@ public class ExitController {
         response.addCookie(username_cookie);
         HttpSession session = request.getSession();
         session.invalidate();
-        return "common/login";
+        return "redirect:/user/login";
     }
 }
