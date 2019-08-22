@@ -121,7 +121,7 @@ public class UserServiceImpl implements IUserService {
         pageBean.setCurrentPage(currentPage);
 
         //每页显示的数据
-        int pageSize=5;
+        int pageSize=10;
         pageBean.setSize(pageSize);
 
         //封装总记录数
