@@ -18,19 +18,21 @@ public class ExitController {
         Cookie username_cookie = new Cookie("username",null);
         Cookie password_cookie = new Cookie("password",null);
         password_cookie.setMaxAge(0);
-        password_cookie.setPath("/project/user");
-        /**
-         *火狐浏览器
-         * password_cookie.setPath("/project/user/");
-         * */
+        password_cookie.setPath("/project/user/");
         response.addCookie(password_cookie);
         username_cookie.setMaxAge(0);
-        username_cookie.setPath("/project/user");
-        /**
-         *火狐浏览器
-         * username_cookie.setPath("/user/");
-         * */
+        username_cookie.setPath("/project/user/");
         response.addCookie(username_cookie);
+
+        Cookie username_cookie_qq = new Cookie("username",null);
+        Cookie password_cookie_qq = new Cookie("password",null);
+        password_cookie_qq.setMaxAge(0);
+        password_cookie_qq.setPath("/project/user");
+        response.addCookie(password_cookie_qq);
+        username_cookie_qq.setMaxAge(0);
+        username_cookie_qq.setPath("/project/user");
+        response.addCookie(username_cookie_qq);
+
         HttpSession session = request.getSession();
         session.invalidate();
         return "redirect:/user/login";
