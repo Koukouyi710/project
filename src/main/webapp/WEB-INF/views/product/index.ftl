@@ -80,6 +80,57 @@
                         </div>
 
                         <div class="form-group">
+                            <label>是否新品</label>
+                            <#assign checkisNew="${product.isNew}"/>
+                            <select name="isNew" class="form-control">
+                                <option value="1"
+                                <#if checkisNew==1>
+                                            selected
+                                </#if>
+                                >是</option>
+                                <option value="0"
+                                <#if checkisNew==0>
+                                            selected
+                                </#if>
+                                >否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>是否热门</label>
+                            <#assign checkisHot="${product.isHot}"/>
+                            <select name="isHot" class="form-control">
+                                <option value="1"
+                                <#if checkisHot==1>
+                                            selected
+                                </#if>
+                                >是</option>
+                                <option value="0"
+                                <#if checkisHot==0>
+                                            selected
+                                </#if>
+                                >否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>是否轮播</label>
+                            <#assign checkisBanner="${product.isBanner}"/>
+                            <select name="isBanner" class="form-control">
+                                <option value="1"
+                                <#if checkisBanner==1>
+                                            selected
+                                </#if>
+                                >是</option>
+                                <option value="0"
+                                <#if checkisBanner==0>
+                                            selected
+                                </#if>
+                                >否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>图片上传</label>
                             <input id="productIcon" name="productIcon" type="text" hidden="hidden" value="${(productInfo.productIcon)!''}"/>
 
