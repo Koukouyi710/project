@@ -11,10 +11,7 @@ import com.neuedu.service.IOrderService;
 import com.neuedu.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +39,7 @@ public class OrderController {
     /**
      *订单列表
      */
-    @RequestMapping("findorder")
+    @RequestMapping(value = "findorder",method = RequestMethod.GET)
     public  String  findorder(HttpSession session,@RequestParam(value = "currentPage", defaultValue = "1") int currentPage){
 
         List<UserInfo> userlist=userService.findAll();
@@ -113,12 +110,21 @@ public class OrderController {
         //return "redirect:/user/order/findorder";
     }
 
-    /**
-     *订单详情
-     */
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public  String  totest(){
+
+        return "order/detail";
+    }
+    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse test(){
+        Order order = orderMapper.selectByPrimaryKey(4);
+        return orderService.detail(null,order.getOrderNo());
+    }
+
     @ResponseBody
     @RequestMapping(value = "detail/{id}")
-    public ServerResponse detail(@PathVariable("id") Integer id, HttpSession session, Long orderNo){
+    public ServerResponse detail(@PathVariable("id") Integer id){
         Order order = orderMapper.selectByPrimaryKey(id);
         return orderService.detail(null,order.getOrderNo());
     }
