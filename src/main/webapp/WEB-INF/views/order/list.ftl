@@ -4,10 +4,16 @@
 <body onload="_onload()">
 <div id="wrapper" class="toggled">
 
-<#--边栏sidebar-->
+    <#--边栏sidebar-->
     <#include "common/nav.ftl">
 
-<#--主要内容content-->
+        <form role="form" action="search" method="post">
+            <div class="form-group" style="width: 100%">
+                <input type="submit" class="btn btn-default" value="搜索" style="float: right">
+                <input type="text" placeholder="请输入订单号" name="orderNo" class="form-control" style="width: 50%;float: right">
+            </div>
+        </form>
+    <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">

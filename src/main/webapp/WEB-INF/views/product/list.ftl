@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <#include "common/header.ftl">
 <head>
     <style type="text/css">
@@ -35,14 +35,28 @@
                             <div class="col-md-12 column">
                                 <form role="form" action="search" method="post">
                                     <div class="form-group" style="width: 100%">
+                                        <label>类别</label>
                                         <input type="submit" class="btn btn-default" value="搜索" style="float: right">
                                         <input type="text" placeholder="请输入要搜索的商品的关键字" name="keyword" class="form-control" style="width: 50%;float: right">
+                                        <select name="categoryId" class="form-control" style="width: 40%;float: right">
+                                            <option value="">请选择类别</option>
+                                            <option value="0">无父类</option>
+                                <#list categorylist as category>
+                                    <option value="${category.id}"
+                                        <#if (product.categoryId)?? && product.categoryId == category.id>
+                                                selected
+                                        </#if>
+                                    >${category.id}-${category.name}</option>
+                                </#list>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
 
+
+                    </br>
                     <label>在架商品</label>
                     <table class="table table-bordered table-condensed">
                         <thead>
@@ -53,7 +67,7 @@
                             <th>商品副标题</th>
                             <th>商品主图</th>
                             <th>图片地址</th>
-                        <#--<th>商品详情</th>-->
+                            <#--<th>商品详情</th>-->
                             <th>价格</th>
                             <th>库存数量</th>
                             <th>商品状态</th>
@@ -83,9 +97,9 @@
                                 <td width="100">${product.name}</td>
                                 <td width="100">${product.subtitle}</td>
                             <#--<td>${product.mainImage}</td>-->
-                                <td><img height="100" width="100" src="${product.mainImage}" alt=""></td>
+                                <td><img height="100" width="100" src="http://img.cdn.imbession.top/${product.mainImage}" alt=""></td>
                                 <td>${product.subImages}</td>
-                                <td width="200">${product.detail}</td>
+                               <#-- <td width="200">${product.detail}</td>-->
                                 <td width="100">${product.price}</td>
                                 <td width="100">${product.stock}</td>
                             <#assign checkstatus="${product.status}"/>
@@ -125,9 +139,9 @@
                             <#--<td>${product.status}</td>-->
                                 <td width="200">${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                 <td width="200">${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                                <td width="50"><a href="/project/user/product/detail/${product.id}">详情</a>
-                                    <a href="/project/user/product/productupdate/${product.id}">修改</a>
-                                    <a href="productdown/${product.id}" >下架</a>
+                                <td><a href="/user/product/productdetail/${product.id}">详情</a>
+                                    <a href="/user/product/productupdate/${product.id}">修改</a>
+                                <a href="productdown/${product.id}" >下架</a>
                                 </td>
                             </tr>
                         </#if>
@@ -147,7 +161,7 @@
                         <#if uplist.getCurrentPage() == index>
                             <li class="disabled"><a href="#">${index}</a></li>
                         <#else>
-                            <li><a href="/project/user/product/findproduct?currentPageup=${index}">${index}</a></li>
+                            <li><a href="/user/product/findproduct?currentPageup=${index}">${index}</a></li>
                         </#if>
                     </#list>-->
 
@@ -198,7 +212,7 @@
                             <th>商品副标题</th>
                             <th>商品主图</th>
                             <th>图片地址</th>
-                        <#--<th>商品详情</th>-->
+                            <#--<th>商品详情</th>-->
                             <th>价格</th>
                             <th>库存数量</th>
                             <th>商品状态</th>
@@ -228,15 +242,9 @@
                                 <td width="100">${product.name}</td>
                                 <td width="100">${product.subtitle}</td>
                             <#--<td>${product.mainImage}</td>-->
-                                <td><img height="100" width="100" src="${product.mainImage}" alt=""></td>
-                                <#assign subimg="${product.subImages}"/>
-                                <#assign imglist=subimg.split(";")/>
-                                <#list imglist as img>
-                                    <td><img height="100" width="100" src="${img}" alt="">${subimg}</td>
-                                </#list>
-                                <td>${newsubimg}</td>
-                                <#--<td>${product.subImages}</td>-->
-                                <td width="200">${product.detail}</td>
+                                <td><img height="100" width="100" src="http://img.cdn.imbession.top/${product.mainImage}" alt=""></td>
+                                <td>${product.subImages}</td>
+                               <#-- <td width="200">${product.detail}</td>-->
                                 <td width="100">${product.price}</td>
                                 <td width="100">${product.stock}</td>
                             <#assign checkstatus="${product.status}"/>
@@ -273,14 +281,13 @@
                             <#if checkisBanner==0>
                                     <td width="50">否</td>
                             </#if>
+
                             <#--<td>${product.status}</td>-->
                                 <td width="200">${product.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                 <td width="200">${product.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                                <td colspan="2"><a href="/project/user/product/detail/${product.id}">详情</a>
-                                    <a href="/project/user/product/productupdate/${product.id}">修改</a>
+                                <td colspan="2"><a href="/user/product/productdetail/${product.id}">详情</a><a href="/user/product/productupdate/${product.id}">修改</a>
                                     <a href="productup/${product.id}" >上架</a>
-                                    <a href="productdelete/${product.id}" >删除</a>
-                                </td>
+                                <a href="productdelete/${product.id}" >删除</a></td>
                             </tr>
                         </#if>
                         </#list>
@@ -301,12 +308,13 @@
                          <#if downlist.getCurrentPage() == index>
                              <li class="disabled"><a href="#">${index}</a></li>
                          <#else>
-                             <li><a href="/project/user/product/findproduct?currentPagedown=${index}">${index}</a></li>
+                             <li><a href="/user/product/findproduct?currentPagedown=${index}">${index}</a></li>
                          </#if>
                      </#list>-->
 
+
                     <#--&lt;#&ndash; 以下为带省略号分页 &ndash;&gt;
-                &lt;#&ndash;第一页&ndash;&gt;-->
+                    &lt;#&ndash;第一页&ndash;&gt;-->
                             <#if (downlist.getTotalPages() > 0)>
                                 <li <#if (downlist.getCurrentPage() == 1)>class="disabled"</#if>><a href="/project/user/product/findproduct?currentPagedown=1">1</a></li>
                             </#if>
@@ -334,6 +342,7 @@
                             <#--最后页&ndash;&gt;-->
                                 <li <#if (downlist.getCurrentPage() == downlist.getTotalPages())>class="disabled"</#if>><a href="/project/user/product/findproduct?currentPagedown=${downlist.getTotalPages()}" >${downlist.getTotalPages()}</a></li>
                             </#if>
+
 
                             <#if downlist.getCurrentPage() gte downlist.getTotalPages()>
                                 <li class="disabled"><a href="#">下一页</a></li>
